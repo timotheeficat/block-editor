@@ -1,0 +1,22 @@
+{
+  "name": "block-editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timotheeficat/block-editor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timotheeficat/block-editor/issues"
+  },
+  "homepage": "https://github.com/timotheeficat/block-editor#readme",
+  "dependencies": {
+    "sortablejs": "^1.15.0"
+  }
+}
