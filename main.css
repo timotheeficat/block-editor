@@ -1,0 +1,127 @@
+html,
+body {
+  margin: 0;
+  position: relative;
+}
+
+div {
+  align-items: start;
+}
+
+.screen {
+  display: flex;
+  height: calc(100vh - 150px);
+}
+
+.blocks-editor {
+  background-color: rgb(180, 180, 180);
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.text-editor {
+  background-color: rgb(63, 63, 63);
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 50px;
+  outline: none;
+  overflow: auto;
+}
+
+.text-editor > pre {
+  height: 100%;
+  margin: 0;
+  align-items: start;
+}
+
+.text-editor > pre > code {
+  height: 100%;
+  width: 100%;
+  padding: 0 !important;
+}
+
+.blocks-library {
+  background-color: rgb(93, 106, 121);
+  height: 150px;
+}
+
+.blocks {
+  margin: 0;
+  min-height: 100%;
+  padding: 0;
+}
+
+.blocks-editor {
+  padding: 50px;
+}
+
+.blocks-library > .blocks {
+  display: flex;
+  align-items: center;
+  margin-left: 50px;
+}
+
+.block {
+  display: block;
+  padding: 5px 10px;
+  border: 1px solid white;
+  border-radius: 10px;
+  cursor: grab;
+  width: max-content;
+}
+
+.blocks-library .block:not(:first-child) {
+  margin-left: 20px;
+}
+
+.moveto {
+  background-color: rgb(120, 155, 196);
+}
+
+.moveto > select {
+  margin-left: 8px;
+}
+
+.blocks-library .moveto > select,
+.blocks-library .block > ul {
+  display: none;
+}
+.pick {
+  background-color: rgb(196, 176, 120);
+}
+
+.drop {
+  background-color: rgb(99, 189, 137);
+}
+
+.cook {
+  background-color: rgb(218, 82, 82);
+}
+
+.if {
+  background-color: rgb(240, 255, 35);
+}
+
+.loop {
+  background-color: rgb(191, 82, 218);
+}
+
+.block.selected {
+  border-color: red;
+}
+
+.block > ul {
+  background-color: rgb(200, 200, 200);
+  min-height: 30px;
+  min-width: 100px;
+  border: 1px dashed black;
+  border-radius: 10px;
+}
+
+.block .block {
+  box-sizing: border-box;
+  width: 100%;
+}
