@@ -38,6 +38,7 @@
     <div class="blocks-library">
       <ul id="library" class="blocks">
         <li class="block moveto" data-type="moveto">
+          <div class="delete">🗑</div>
           Move to
           <select>
             <option value="meat_dispenser">Meat dispenser</option>
@@ -50,15 +51,28 @@
             <option value="service">Service</option>
           </select>
         </li>
-        <li class="block pick" data-type="pick">Pick</li>
-        <li class="block drop" data-type="drop">Drop</li>
-        <li class="block cook" data-type="cook">Cook</li>
+        <li class="block pick" data-type="pick">
+          <div class="delete">🗑</div>
+          Pick
+        </li>
+        <li class="block drop" data-type="drop">
+          <div class="delete">🗑</div>
+          Drop
+        </li>
+        <li class="block cook" data-type="cook">
+          <div class="delete">🗑</div>
+          Cook
+        </li>
         <li class="block if" data-type="if">
+          <div class="delete">🗑</div>
           If
+          <input class="cond"/>
           <ul class="blocks empty"></ul>
         </li>
-        <li class="block loop" data-type="loop">
-          Loop
+        <li class="block while" data-type="while">
+          <div class="delete">🗑</div>
+          While
+          <input class="cond"/>
           <ul class="blocks empty"></ul>
         </li>
       </ul>

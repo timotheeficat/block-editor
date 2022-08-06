@@ -36,14 +36,22 @@ function blocksToJSON(blocks, ind) {
       },
       if: () => {
         json += "\"action\": \"if\",\n";
+        const input = child.querySelector(".cond");
+        const cond = input.value;
+        json += indent(ind+1);
+        json += "\"cond\": \""+cond+"\",\n";
         json += indent(ind+1);
         json += "\"actions\": [\n";
         json += blocksToJSON(child.querySelector("ul").children, ind+2);
         json += indent(ind+1);
         json += "]";
       },
-      loop: () => {
-        json += "\"loop\": \"if\",\n";
+      while: () => {
+        json += "\"action\": \"while\",\n";
+        const input = child.querySelector(".cond");
+        const cond = input.value;
+        json += indent(ind+1);
+        json += "\"cond\": \""+cond+"\",\n";
         json += indent(ind+1);
         json += "\"actions\": [\n";
         json += blocksToJSON(child.querySelector("ul").children, ind+2);
@@ -70,7 +78,7 @@ function updateJSON() {
   }
 
   let blocks = document.getElementById("blocks");
-  let json = '{\n  "action": [\n';
+  let json = '{\n  "actions": [\n';
   json += blocksToJSON(blocks.children, 2);
   json += "  ]\n}";
 
@@ -88,8 +96,12 @@ function addList(list) {
     selectedClass: "selected",
     fallbackTolerance: 3,
     onAdd: function (evt) {
-      if(evt.item.classList.contains("if") || evt.item.classList.contains("loop")) {
+      if(evt.item.classList.contains("if") || evt.item.classList.contains("while")) {
         addList(evt.item.querySelector("ul"));
+        evt.item.querySelector("input").addEventListener('keypress', function() {
+          clearTimeout(timeoutUpdate);
+          timeoutUpdate = setTimeout(updateJSON, 200);
+        });
       }
       if(evt.item.classList.contains("moveto")) {
         evt.item.querySelector("select").addEventListener('change', function() {
@@ -97,6 +109,11 @@ function addList(list) {
           timeoutUpdate = setTimeout(updateJSON, 200);
         });
       }
+      evt.item.querySelector(".delete").addEventListener('click', function(e) {
+        e.target.parentNode.remove();
+        clearTimeout(timeoutUpdate);
+        timeoutUpdate = setTimeout(updateJSON, 200);
+      });
     },
     onChange: function (evt) {
       clearTimeout(timeoutUpdate);
@@ -106,6 +123,7 @@ function addList(list) {
 }
 
 window.addEventListener("load", function (event) {
+  updateJSON();
   addList(document.getElementById("blocks"));
   new Sortable(document.getElementById("library"), {
     group: {

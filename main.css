@@ -71,6 +71,8 @@ div {
   border-radius: 10px;
   cursor: grab;
   width: max-content;
+  position: relative;
+  padding-right: 25px;
 }
 
 .blocks-library .block:not(:first-child) {
@@ -86,7 +88,9 @@ div {
 }
 
 .blocks-library .moveto > select,
-.blocks-library .block > ul {
+.blocks-library .block > ul,
+.blocks-library .block > .delete,
+.blocks-library .block > .cond {
   display: none;
 }
 .pick {
@@ -105,7 +109,7 @@ div {
   background-color: rgb(240, 255, 35);
 }
 
-.loop {
+.while {
   background-color: rgb(191, 82, 218);
 }
 
@@ -124,4 +128,24 @@ div {
 .block .block {
   box-sizing: border-box;
   width: 100%;
+}
+
+.block > .delete {
+  position: absolute;
+  top: 3px;
+  right: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+.block:hover > .delete {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.block > .cond {
+  margin-bottom: 5px;
 }
