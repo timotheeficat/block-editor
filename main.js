@@ -1,5 +1,3 @@
-var timeoutUpdate = null;
-
 function indent(ind) {
   let json = "";
   let i = ind;
@@ -99,25 +97,21 @@ function addList(list) {
       if(evt.item.classList.contains("if") || evt.item.classList.contains("while")) {
         addList(evt.item.querySelector("ul"));
         evt.item.querySelector("input").addEventListener('keypress', function() {
-          clearTimeout(timeoutUpdate);
-          timeoutUpdate = setTimeout(updateJSON, 200);
+          updateJSON();
         });
       }
       if(evt.item.classList.contains("moveto")) {
         evt.item.querySelector("select").addEventListener('change', function() {
-          clearTimeout(timeoutUpdate);
-          timeoutUpdate = setTimeout(updateJSON, 200);
+          updateJSON();
         });
       }
       evt.item.querySelector(".delete").addEventListener('click', function(e) {
         e.target.parentNode.remove();
-        clearTimeout(timeoutUpdate);
-        timeoutUpdate = setTimeout(updateJSON, 200);
+        updateJSON();
       });
     },
     onChange: function (evt) {
-      clearTimeout(timeoutUpdate);
-      timeoutUpdate = setTimeout(updateJSON, 200);
+      updateJSON();
     },
   });
 }
